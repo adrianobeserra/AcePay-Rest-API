@@ -18,10 +18,13 @@ exports.post = (req, res, next) => {
               res: "Usuário cadastrado com sucesso.", novoUsuario
             })
           } else {
-              if (err) console.log(err); // eventualmente avisar com res.send também
-              else res.send({
-                res: "Erro ao cadastrar o usuario.", err
-              })
+              if (err) { 
+                  console.log(err);
+              } else {
+                res.send({
+                    res: "Erro ao cadastrar o usuario.", err
+                })
+            }
         }
     });
 };
