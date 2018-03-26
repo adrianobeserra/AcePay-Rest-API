@@ -3,8 +3,14 @@ mongoClient.connect("mongodb://adrianobeserra:D1b2s3@ds123619.mlab.com:23619/ace
             .then(conn => global.conn = conn.db("acepaydb"))
             .catch(err => console.log(err))
  
+const collection = "usuario";
+
             function findAll(callback){  
-                global.conn.collection("usuario").find({}).toArray(callback);
+                global.conn.collection(collection).find({}).toArray(callback);
+            }
+
+            function insert(doc, callback) {
+                global.conn.collection(collection).insertOne(doc, callback);
             }
             
-module.exports = { findAll }
+module.exports = { findAll, insert }
