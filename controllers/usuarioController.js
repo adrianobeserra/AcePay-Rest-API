@@ -31,10 +31,39 @@ exports.post = (req, res, next) => {
 
 exports.put = (req, res, next) => {
     let id = req.params.id;
-    res.status(201).send(`Requisição recebida com sucesso! ${id}`);
+    let usuario = req.body;
+    global.db.update(id, usuario, function(err, rows) {
+        if (rows) {
+            res.send({
+              res: "Usuário atualizado com sucesso.", usuario
+            })
+          } else {
+              if (err) { 
+                  console.log(err);
+              } else {
+                res.send({
+                    res: "Erro ao atualizar o usuario.", err
+                })
+            }
+        }
+    });
 };
 
 exports.delete = (req, res, next) => {
     let id = req.params.id;
-    res.status(200).send(`Requisição recebida com sucesso! ${id}`);
+    global.db.deleteUser(id, function(err, rows) {
+        if (rows) {
+            res.send({
+              res: "Usuário excluído com sucesso.", id
+            })
+          } else {
+              if (err) { 
+                  console.log(err);
+              } else {
+                res.send({
+                    res: "Erro ao excluir o usuario: ${id}", err
+                })
+            }
+        }
+    });
 };

@@ -12,5 +12,18 @@ const collection = "usuario";
             function insert(doc, callback) {
                 global.conn.collection(collection).insertOne(doc, callback);
             }
+
+            function update(_id, doc, callback) {
+                let id = _id;
+                global.conn.collection(collection).replaceOne(
+                    { "_id": "${id}" },
+                    doc, { upsert: false }, callback);
+            }
+
+            function deleteUser(_id, callback) {
+                let id = _id;
+                global.conn.collection(collection).deleteOne(
+                    { "_id": id }, callback);
+            }
             
-module.exports = { findAll, insert }
+module.exports = { findAll, insert, update, deleteUser }
