@@ -6,7 +6,10 @@ exports.get = (req, res, next) => {
             res.end();
             return console.log(e); 
         }
-        res.status(201).send(res.json(docs));
+        console.log(docs);
+        var util = require('util');
+        docs = util.inspect(docs);//CircularJSON.stringify(docs);
+        res.status(201).send(docs);
     });
 };
 
