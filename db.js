@@ -2,11 +2,16 @@ var mongoClient = require("mongodb").MongoClient;
 mongoClient.connect("mongodb://adrianobeserra:D1b2s3@ds123619.mlab.com:23619/acepaydb")
             .then(conn => global.conn = conn.db("acepaydb"))
             .catch(err => console.log(err))
- 
+var ObjectId = require('mongodb').ObjectID;
+
 const collection = "usuario";
 
             function findAll(callback){  
                 global.conn.collection(collection).find({}).toArray(callback);
+            }
+
+            function findOne(id, callback){  
+                global.conn.collection(collection).find(new ObjectId(id)).toArray(callback);
             }
 
             function insert(doc, callback) {
@@ -26,4 +31,4 @@ const collection = "usuario";
                     { "_id": id }, callback);
             }
             
-module.exports = { findAll, insert, update, deleteUser }
+module.exports = { findAll, findOne, insert, update, deleteUser }

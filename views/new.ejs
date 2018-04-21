@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style[css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <form action="/new" method="POST" enctype='application/json'>
+      <p>Nome:<input type="text" name="nome"/></p>
+      <p>Data Nascimento:<input type="date" name="data_nasc" /></p>
+      <p>Tipo:<input type="text" name="tipo" /></p>
+      <p>CPF:<input type="number" name="cpf" /></p>
+      <p>Dados de Acesso</p>
+      <p>Login:<input type="text" name="login" /></p>
+      <p>Senha:<input type="text" name="senha" /></p>
+      <p>Rua:<input type="text" name="endereco[rua]" /></p>
+      <p>Endereço</p>
+      <p>Numero:<input type="number" name="endereco[numero]" /></p>
+      <p>Complemento:<input type="text" name="endereco[complemento]" /></p>
+      <p>CEP:<input type="text" name="endereco.cep" /></p>
+      <p>Bairro:<input type="text" name="endereco[bairro]" /></p>
+      <p>Cidade:<input type="text" name="endereco[cidade]" /></p>
+      <p>Estado:<input type="text" name="endereco[estado]" /></p>
+      <p>Conta Bancária</p>
+      <p>Agência:<input type="number" name="conta_bancaria[agencia]" /></p>
+      <p>Conta:<input type="number" name="conta_bancaria[conta]" /></p>
+      <p>Dígito:<input type="number" name="conta_bancaria[digito]" /></p>
+      <p>Operação:<input type="number" name="conta_bancaria[operacao]" /></p>
+      <p>Saldo a Receber:<input type="number" name="conta_bancaria[saldoReceber]" /></p>
+      <p>Saldo a Enviar:<input type="number" name="conta_bancaria[saldoEnviar]" /></p>
+      <p>Conta AcePay</p>
+      <p>Chave Privada:<input type="text" name="conta_acepay[chave_privada]" /></p>
+      <p>Chave Pública:<input type="text" name="conta_acepay[chave_publica]" /></p>
+      <p>Endereço BitCoin:<input type="text" name="conta_acepay[endereco_BTC]" /></p>
+      <p>Saldo BitCoin:<input type="number" name="conta_acepay[saldo_BTC]" /></p>
+      <p>Transações</p>
+      <p>Data:<input type="date" name="transacoes[data]" /></p>
+      <p>Descrição:<input type="text" name="transacoes[descricao]" /></p>
+      <p>Status:<input type="text" name="transacoes[status]" /></p>
+      <p>Tipo de Transação:<input type="text" name="transacoes[tipo_transacao]" /></p>
+      <p>Conta de Origem:<input type="text" name="transacoes[conta_origem]" /></p>
+      <p>Conta de Destino:<input type="text" name="transacoes[conta_destino]" /></p>
+      <p>Endereço BitCoin:<input type="text" name="transacoes[endereco_BTC]" /></p>
+      <p>Valor:<input type="number" name="transacoes[valor]" /></p>
+      <p>Tarifa:<input type="number" name="transacoes[tarifa]" /></p>
+      <p>Valor Líquido:<input type="number" name="transacoes[valor_liquido]" /></p>
+      <input type="submit" value="Salvar" />
+    </form>
+  </body>
+</html>

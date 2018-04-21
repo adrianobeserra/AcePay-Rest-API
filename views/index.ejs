@@ -6,13 +6,14 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <p>MongoDB e NodeJS CRUD</p>
     <ul>
-      <% docs.forEach(function(customer){ %>
+      <% docs.forEach(function(usuario){ %>
         <li>
-            <%= customer.nome %>
+          <%= usuario._id %> - <%= usuario.nome %> - <a href="/update/<%= usuario._id %>">Atualizar</a>
         </li>
       <% }) %>
     </ul>
+    Disciplina de Banco de Dados - IFPE - Pós-Graduação em Inovação em Desenvolvimento Web e Dispositivos Móveis
   </body>
 </html>
