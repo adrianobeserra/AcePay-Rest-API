@@ -7,6 +7,7 @@ var jsonParser = bodyParser.json();
 
 /* GET home page. */
 router.get('/', function(req, res) {
+  console.log('teste');
   global.db.findAll((e, docs) => {
       if(e) { return console.log(e); }
       res.render('index', { title: 'Lista de Documentos', docs: docs });
@@ -27,8 +28,19 @@ router.post('/new', function(req, res, next) {
 
 /* Rota para a View de Update */
 router.get('/update/:id', function(req, res, next) {
-  usuarioController.update(req, res, next);
+  usuarioController.findOne(req, res, next);
 });
+
+/* Rota para Update */
+router.post('/update/:id', function(req, res, next) {
+  usuarioController.put(req, res, next);
+});
+
+/* Rota para Delete */
+router.get('/delete/:id', function(req, res, next) {
+  usuarioController.delete(req, res, next);
+});
+
 
 
 module.exports = router;

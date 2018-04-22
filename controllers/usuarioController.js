@@ -11,7 +11,7 @@ exports.get = (req, res, next) => {
     });
 }
 
-exports.update = (req, res, next) => {
+exports.findOne = (req, res, next) => {
     let id = req.params.id;
     if (id) {
         global.db.findOne(id, function (e, docs) {
@@ -56,37 +56,45 @@ exports.post = (req, res, next) => {
 
 exports.put = (req, res, next) => {
     let id = req.params.id;
-    let usuario = req.body;
-    global.db.update(id, usuario, function (err, rows) {
-        if (rows) {
-            res.send({
-                res: "Usuário atualizado com sucesso.", usuario
-            })
-        } else {
-            if (err) {
-                console.log(err);
-            } else {
-                res.send({
-                    res: "Erro ao atualizar o usuario.", err
-                })
-            }
+    let novoUsuario = req.body;
+    let usuarioJSON = JSON.stringify(novoUsuario, function (k, v) {
+        if (v == '' || v == null) {
+            return undefined;
         }
+        return v;
     });
+    novoUsuario = JSON.parse(usuarioJSON);
+    if (id) {
+        global.db.update(id, novoUsuario, function (err, rows) {
+            if (rows) {
+                res.send({
+                    "res" : "Usuário atualizado com sucesso.", novoUsuario
+                })
+            } else {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.send({
+                        "res" : "Erro ao atualizar o usuario.", err
+                    })
+                }
+            }
+        });
+    }
 };
 
 exports.delete = (req, res, next) => {
     let id = req.params.id;
     global.db.deleteUser(id, function (err, rows) {
         if (rows) {
-            res.send({
-                res: "Usuário excluído com sucesso.", id
-            })
+            console.log('sucesso:' + rows);
+            res.redirect('/');
         } else {
             if (err) {
                 console.log(err);
             } else {
                 res.send({
-                    res: "Erro ao excluir o usuario: ${id}", err
+                    "res" : "Erro ao excluir o usuario: ${id}", err
                 })
             }
         }

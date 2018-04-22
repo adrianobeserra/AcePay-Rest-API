@@ -6,8 +6,8 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <form action="/new" method="POST" enctype='application/json'>
-      <input type="hidden" name="_id" value="<%= doc._id  %>" />
+    <form action="/update/<%= doc._id  %>" method="POST" enctype='application/json'>
+      <!-- <input type="hidden" name="_id" value="<%= doc._id  %>" /> -->
       <p>Nome:<input type="text" name="nome" value="<%= doc.nome ? doc.nome : '' %>" /></p>
       <p>Data Nascimento:<input type="date" name="data_nasc" value="<%= doc.data_nasc ? doc.data_nasc : '' %>" /></p>
       <p>Tipo:<input type="text" name="tipo" value="<%= doc.tipo  ? doc.tipo : '' %>" /></p>
@@ -15,26 +15,26 @@
       <p>Dados de Acesso</p>
       <p>Login:<input type="text" name="login" value="<%= doc.login ? doc.login : '' %>"/></p>
       <p>Senha:<input type="text" name="senha" value="<%= doc.senha ? doc.senha : '' %>" /></p>
-      <p>Rua:<input type="text" name="endereco[rua]" value="<%= doc.endereco.rua ? doc.endereco.rua : '' %>" /></p>
       <p>Endereço</p>
-      <p>Numero:<input type="number" name="endereco[numero]" value="<%= doc.endereco.numero ? doc.endereco.numero : ''%>" /></p>
-      <p>Complemento:<input type="text" name="endereco[complemento]" value="<%= doc.endereco.complemento ? doc.endereco.complemento : ''%>" /></p>
-      <p>CEP:<input type="text" name="endereco[cep]" value="<%= doc.endereco.cep ? doc.endereco.cep : '' %>"/></p>
-      <p>Bairro:<input type="text" name="endereco[bairro]" value="<%= doc.endereco.bairro ?doc.endereco.bairro : '' %>"/></p>
-      <p>Cidade:<input type="text" name="endereco[cidade]" value="<%= doc.endereco.cidade ? doc.endereco.cidade : '' %>"/></p>
-      <p>Estado:<input type="text" name="endereco[estado]" value="<%= doc.endereco.estado ? doc.endereco.estado : '' %>"/></p>
+      <p>Rua:<input type="text" name="endereco[rua]" value="<%= doc.endereco ? (doc.endereco.rua ? doc.endereco.rua : '') : '' %>" /></p>
+      <p>Numero:<input type="number" name="endereco[numero]" value="<%= doc.endereco ? (doc.endereco.numero ? doc.endereco.numero : '') : ''%>" /></p>
+      <p>Complemento:<input type="text" name="endereco[complemento]" value="<%= doc.endereco ? (doc.endereco.complemento ? doc.endereco.complemento : '') : '' %>" /></p>
+      <p>CEP:<input type="text" name="endereco[cep]" value="<%= doc.endereco ? (doc.endereco.cep ? doc.endereco.cep : '') : '' %>"/></p>
+      <p>Bairro:<input type="text" name="endereco[bairro]" value="<%= doc.endereco ? (doc.endereco.bairro ?doc.endereco.bairro : '') : '' %>"/></p>
+      <p>Cidade:<input type="text" name="endereco[cidade]" value="<%= doc.endereco ? (doc.endereco.cidade ? doc.endereco.cidade : '') : '' %>"/></p>
+      <p>Estado:<input type="text" name="endereco[estado]" value="<%= doc.endereco ? (doc.endereco.estado ? doc.endereco.estado : '') : '' %>"/></p>
       <p>Conta Bancária</p>
-      <p>Agência:<input type="number" name="conta_bancaria[agencia]" value="<%= doc.conta_bancaria.agencia ? doc.conta_bancaria.agencia : '' %>"/></p>
-      <p>Conta:<input type="number" name="conta_bancaria[conta]" value="<%= doc.conta_bancaria.conta ?  doc.conta_bancaria.conta : '' %>"/></p>
-      <p>Dígito:<input type="number" name="conta_bancaria[digito]" value="<%= doc.conta_bancaria.digito ? doc.conta_bancaria.digito : '' %>"/></p>
-      <p>Operação:<input type="number" name="conta_bancaria[operacao]" value="<%= doc.conta_bancaria.operacao ? doc.conta_bancaria.operacao : '' %>"/></p>
-      <p>Saldo a Receber:<input type="number" name="conta_bancaria[saldoReceber]" value="<%= doc.conta_bancaria.saldoReceber ? doc.conta_bancaria.saldoReceber : '' %>"/></p>
-      <p>Saldo a Enviar:<input type="number" name="conta_bancaria[saldoEnviar]" value="<%= doc.conta_bancaria.saldoEnviar ? doc.conta_bancaria.saldoEnviar : '' %>"/></p>
+      <p>Agência:<input type="number" name="conta_bancaria[agencia]" value="<%= doc.conta_bancaria ? (doc.conta_bancaria.agencia ? doc.conta_bancaria.agencia : '') : '' %>"/></p>
+      <p>Conta:<input type="number" name="conta_bancaria[conta]" value="<%= doc.conta_bancaria ? (doc.conta_bancaria.conta ?  doc.conta_bancaria.conta : '') : '' %>"/></p>
+      <p>Dígito:<input type="number" name="conta_bancaria[digito]" value="<%= doc.conta_bancaria ? (doc.conta_bancaria.digito ? doc.conta_bancaria.digito : '') : '' %>"/></p>
+      <p>Operação:<input type="number" name="conta_bancaria[operacao]" value="<%= doc.conta_bancaria ? (doc.conta_bancaria.operacao ? doc.conta_bancaria.operacao : '') : '' %>"/></p>
+      <p>Saldo a Receber:<input type="number" name="conta_bancaria[saldoReceber]" value="<%= doc.conta_bancaria ? (doc.conta_bancaria.saldoReceber ? doc.conta_bancaria.saldoReceber : '') : '' %>"/></p>
+      <p>Saldo a Enviar:<input type="number" name="conta_bancaria[saldoEnviar]" value="<%= doc.conta_bancaria ? (doc.conta_bancaria.saldoEnviar ? doc.conta_bancaria.saldoEnviar : '') : '' %>"/></p>
       <p>Conta AcePay</p>
-      <p>Chave Privada:<input type="text" name="conta_acepay[chave_privada]" value="<%= doc.conta_acepay.chave_privada ? doc.conta_acepay.chave_privada : '' %>"/></p>
-      <p>Chave Pública:<input type="text" name="conta_acepay[chave_publica]" value="<%= doc.conta_acepay.chave_publica ? doc.conta_acepay.chave_publica : '' %>"/></p>
-      <p>Endereço BitCoin:<input type="text" name="conta_acepay[endereco_BTC]" value="<%= doc.conta_acepay.endereco_BTC ? doc.conta_acepay.endereco_BTC : '' %>"/></p>
-      <p>Saldo BitCoin:<input type="number" name="conta_acepay[saldo_BTC]" value="<%= doc.conta_acepay.saldo_BTC ? doc.conta_acepay.saldo_BTC : '' %>"/></p>
+      <p>Chave Privada:<input type="text" name="conta_acepay[chave_privada]" value="<%= doc.conta_acepay ? (doc.conta_acepay.chave_privada ? doc.conta_acepay.chave_privada : '') : '' %>"/></p>
+      <p>Chave Pública:<input type="text" name="conta_acepay[chave_publica]" value="<%= doc.conta_acepay ? (doc.conta_acepay.chave_publica ? doc.conta_acepay.chave_publica : '') : '' %>"/></p>
+      <p>Endereço BitCoin:<input type="text" name="conta_acepay[endereco_BTC]" value="<%= doc.conta_acepay ? (doc.conta_acepay.endereco_BTC ? doc.conta_acepay.endereco_BTC : '') : '' %>"/></p>
+      <p>Saldo BitCoin:<input type="number" name="conta_acepay[saldo_BTC]" value="<%= doc.conta_acepay ? (doc.conta_acepay.saldo_BTC ? doc.conta_acepay.saldo_BTC : '') : '' %>"/></p>
       <p>Transações</p>
       <p>Data:<input type="text" name="transacoes[data]" value="<%= doc.transacoes ? (doc.transacoes.data  ? doc.transacoes.data : '') : '' %>"/></p>
       <p>Descrição:<input type="text" name="transacoes[descricao]" value="<%= doc.transacoes ? (doc.transacoes.descricao ? doc.transacoes.descricao : '') : ''  %>"/></p>

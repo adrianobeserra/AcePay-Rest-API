@@ -20,15 +20,15 @@ const collection = "usuario";
 
             function update(_id, doc, callback) {
                 let id = _id;
-                global.conn.collection(collection).replaceOne(
-                    { "_id": "${id}" },
+                global.conn.collection(collection).update(
+                    { "_id": new ObjectId(id) },
                     doc, { upsert: false }, callback);
             }
 
             function deleteUser(_id, callback) {
                 let id = _id;
                 global.conn.collection(collection).deleteOne(
-                    { "_id": id }, callback);
+                    { "_id": new ObjectId(id) }, callback);
             }
             
 module.exports = { findAll, findOne, insert, update, deleteUser }
