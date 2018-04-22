@@ -9,7 +9,7 @@ Acesse: https://radiant-scrubland-86194.herokuapp.com/users para exemplo da oper
 
 #### Instruções de uso - CRUD HTML
 
-A aplicação NodeJS está hospedada no **Heroku** e pode ser acessada conforme instruções a seguir. Acesse:<br/>
+A aplicação NodeJS está hospedada no **Heroku** e o banco de dados **MongoDB** está hospedado no [MLab](mlab.com/databases/acepaydb") e pode ser acessada conforme instruções a seguir. Acesse:<br/>
 
 1. https://radiant-scrubland-86194.herokuapp.com/ para **Listar todos os documentos**.
 2. https://radiant-scrubland-86194.herokuapp.com/new para **Inserir um novo documento** ou clique no botão **Novo** (insert).
