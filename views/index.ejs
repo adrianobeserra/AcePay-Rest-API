@@ -10,7 +10,7 @@
     <ul>
       <% docs.forEach(function(usuario){ %>
         <li>
-          <%= usuario._id %> - <%= usuario.nome %> -  <a href="/<%= usuario._id %>">Visualizar</a> - <a href="/update/<%= usuario._id %>">Atualizar</a> - <a href="/delete/<%= usuario._id %>">Excluir</a> 
+          <%= usuario._id %> - <%= usuario.nome %> -  <a href="/document/<%= usuario._id %>">Visualizar</a> - <a href="/update/<%= usuario._id %>">Atualizar</a> - <a href="/delete/<%= usuario._id %>">Excluir</a> 
         </li>
       <% }) %>
     </ul>

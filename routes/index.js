@@ -14,15 +14,17 @@ router.get('/', function (req, res) {
 })
 
 /* GET Usuario por ID. */
-router.get('/:id', function (req, res) {
-  let id = req.param.id;
+router.get('/document/:id', function (req, res, next) {
+  let id = req.params.id;
   if (id) {
     global.db.findOne(id, (e, docs) => {
       if (e) {
         return console.log(e);
       }
-      res.status(201).send(JSON.stringify(docs));
+      res.status(201).send(docs);
     })
+  } else {
+    res.status(201).send("Nenhum ID selecionado");
   }
 });
 
