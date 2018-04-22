@@ -9,7 +9,7 @@
     <form action="/update/<%= doc._id  %>" method="POST" enctype='application/json'>
       <!-- <input type="hidden" name="_id" value="<%= doc._id  %>" /> -->
       <p>Nome:<input type="text" name="nome" value="<%= doc.nome ? doc.nome : '' %>" /></p>
-      <p>Data Nascimento:<input type="date" name="data_nasc" value="<%= doc.data_nasc ? doc.data_nasc : '' %>" /></p>
+      <p>Data Nascimento:<input type="text" name="data_nasc" value="<%= doc.data_nasc ? doc.data_nasc : '' %>" /></p>
       <p>Tipo:<input type="text" name="tipo" value="<%= doc.tipo  ? doc.tipo : '' %>" /></p>
       <p>CPF:<input type="number" name="cpf" value="<%= doc.cpf  ? doc.cpf : ''%>" /></p>
       <p>Dados de Acesso</p>
