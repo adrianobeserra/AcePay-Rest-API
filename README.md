@@ -16,8 +16,8 @@ A aplicação NodeJS está hospedada no **Heroku** e pode ser acessada conforme 
 3. Clique em **Alterar** para abrir o formulário com dados para alteração (update) do documento selecionado.
 4. Clique em **Excluir** para excluir o documento selecionado (delete).
 
-O arquivo [db.js](db.js) contém o código com as rotinas de acesso ao MongoDB e as consultas solicitadas.
-O arquivo [usuarioController.js](/controllers/usuarioController.js) contém o código que aciona as rotinas implementadas no arquivo [db.js](db.js).
-O arquivo [index.js](/routes/index.js) contém os pontos de entrada das operações do CRUD.
+O arquivo [db.js](db.js) contém o código com as rotinas de acesso ao MongoDB e as consultas solicitadas.<br/>
+O arquivo [usuarioController.js](/controllers/usuarioController.js) contém o código que aciona as rotinas implementadas no arquivo [db.js](db.js).<br/>
+O arquivo [index.js](/routes/index.js) contém os pontos de entrada das operações do CRUD.<br/>
 
 Carlos Adriano Beserra da Silva
