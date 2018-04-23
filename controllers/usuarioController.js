@@ -30,6 +30,9 @@ exports.findOne = (req, res, next) => {
 
 exports.post = (req, res, next) => {
     let novoUsuario = req.body;
+    let campoData = "data_cadastro";
+    let data = new Date();
+    novoUsuario[campoData] = data;
     let usuarioJSON = JSON.stringify(novoUsuario, function (k, v) {
         if (v == '' || v == null) {
             return undefined;
