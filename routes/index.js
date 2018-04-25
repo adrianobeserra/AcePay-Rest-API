@@ -56,5 +56,22 @@ router.get('/delete/:id', function (req, res, next) {
 });
 
 
+/* Consultas Personalizadas */
+router.get('/consulta/:id', function(req, res, next) {
+  let id = req.params.id;
+  if (id) {
+    global.db.executeQuery(id, (e, docs) => {
+      if (e) {
+        return console.log(e);
+      }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).send(JSON.stringify(docs));
+    })
+  } else {
+    res.status(200).send("Nenhum ID selecionado");
+  }
+});
+
+
 
 module.exports = router;
