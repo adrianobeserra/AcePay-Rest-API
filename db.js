@@ -38,9 +38,9 @@ function executeQuery(_numeroConsulta, callback) {
     let queryMongo = global.conn.collection("usuario");
     switch (numeroConsulta) {
         //1 - Buscar todos os documentos
-        case '1' :  queryMongo.find({}).toArray(callback);  break;
+        case '1': queryMongo.find({}).toArray(callback); break;
         //2 - Buscar documento por ID
-        case '2' :  queryMongo.find(new ObjectId("5ab70b50734d1d57bac4d706")).toArray(callback);  break;
+        case '2': queryMongo.find(new ObjectId("5ab70b50734d1d57bac4d706")).toArray(callback); break;
         //3 - Buscar todos os documentos sem transacao associada
         case '3': queryMongo.find({ "transacoes": { $exists: true, $ne: "", $ne: null, $ne: {} } }).toArray(callback);
             break;
@@ -241,32 +241,49 @@ function executeQuery(_numeroConsulta, callback) {
             break;
         //16 - Buscar documentos de pessoas nascidas na última década
         case '16': queryMongo.find(
-            {   
-                  "data_nasc" : { 
-                     $lt: new Date(), 
-                     $gte: new Date(new Date().getTime() - (24*60*60000)*(365*10))
-                   }   
-                
+            {
+                "data_nasc": {
+                    $lt: new Date(),
+                    $gte: new Date(new Date().getTime() - (24 * 60 * 60000) * (365 * 10))
+                }
+
             }
-         ).toArray(callback);
+        ).toArray(callback);
             break;
         //17 - Buscar documentos de pessoas maiores de 18 anos
         case '17': queryMongo.find(
             {
                 "data_nasc": {
                     $lte: new Date(new Date().setYear(new Date().getFullYear() - 18))
-                 }
-             }).toArray(callback);
+                }
+            }).toArray(callback);
             break;
         //18 - Buscar documentos de pessoas menores de 18 anos
         case '18': queryMongo.find(
             {
                 "data_nasc": {
                     $gte: new Date(new Date().setYear(new Date().getFullYear() - 18))
-                 }
-             }).toArray(callback);
+                }
+            }).toArray(callback);
             break;
         //19 - Buscar documentos de pessoas que fazem aniversário no mês atual
+        case '19': queryMongo.aggregate([
+            {
+                $project: {
+                    "document": "$$ROOT",
+                    "mes": { $month: '$data_nasc' }
+                },
+            },
+            {
+                "$match":
+                    {
+                        "document.data_nasc": { $exists: true },
+                        "mes": { $eq: new Date().getMonth() + 1 },
+
+                    }
+            }
+        ]).toArray(callback);
+        break;
         //20 - Buscar documentos cujo endereço do usuário é da cidade do Recife
         //21 - Buscar documentos cujo endereço do usuário é do estado de Pernambuco
         //22 - Buscar documentos nos quais a conta bancária é corrente
