@@ -37,6 +37,10 @@ function executeQuery(_numeroConsulta, callback) {
     let numeroConsulta = _numeroConsulta;
     let queryMongo = global.conn.collection("usuario");
     switch (numeroConsulta) {
+        //1 - Buscar todos os documentos
+        case '1' :  queryMongo.find({}).toArray(callback);  break;
+        //2 - Buscar documento por ID
+        case '2' :  queryMongo.find(new ObjectId("5ab70b50734d1d57bac4d706")).toArray(callback);  break;
         //3 - Buscar todos os documentos sem transacao associada
         case '3': queryMongo.find({ "transacoes": { $exists: true, $ne: "", $ne: null, $ne: {} } }).toArray(callback);
             break;
