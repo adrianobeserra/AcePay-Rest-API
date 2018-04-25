@@ -68,14 +68,14 @@ exports.put = (req, res, next) => {
         global.db.update(id, novoUsuario, function (err, rows) {
             if (rows) {
                 res.send({
-                    "res" : "Usuário atualizado com sucesso.", novoUsuario
+                    "res": "Usuário atualizado com sucesso.", novoUsuario
                 })
             } else {
                 if (err) {
                     console.log(err);
                 } else {
                     res.send({
-                        "res" : "Erro ao atualizar o usuario.", err
+                        "res": "Erro ao atualizar o usuario.", err
                     })
                 }
             }
@@ -94,7 +94,7 @@ exports.delete = (req, res, next) => {
                 console.log(err);
             } else {
                 res.send({
-                    "res" : "Erro ao excluir o usuario: ${id}", err
+                    "res": "Erro ao excluir o usuario: ${id}", err
                 })
             }
         }
