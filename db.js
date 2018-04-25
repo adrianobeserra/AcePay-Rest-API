@@ -283,21 +283,76 @@ function executeQuery(_numeroConsulta, callback) {
                     }
             }
         ]).toArray(callback);
-        break;
+            break;
         //20 - Buscar documentos cujo endereço do usuário é da cidade do Recife
+        case '20': queryMongo.find(
+            {
+                "endereco.cidade": /recife/i
+            }).toArray(callback);
+            break;
         //21 - Buscar documentos cujo endereço do usuário é do estado de Pernambuco
+        case '21': queryMongo.find(
+            { "endereco.estado": { $in: [/pe/i, /pernambuco/i] } }
+        ).toArray(callback);
+            break;
         //22 - Buscar documentos nos quais a conta bancária é corrente
+        case '22': queryMongo.find(
+            { "conta_bancaria.operacao": 1 }
+        ).toArray(callback);
+            break;
         //23 - Buscar documentos nos quais a conta bancária é poupança
+        case '23': queryMongo.find(
+            { "conta_bancaria.operacao": 13 }
+        ).toArray(callback);
+            break;
         //24 - Buscar documentos nos quais o saldo a receber da conta bancária maior que 0
+        case '24': queryMongo.find(
+            { "conta_bancaria.saldoReceber": { $gt: 0 } }
+        ).toArray(callback);
+            break;
         //25 - Buscar documentos nos quais o saldo a receber da conta bancária igual a 0
+        case '25': queryMongo.find(
+            { "conta_bancaria.saldoReceber": 0 }
+        ).toArray(callback);
+            break;
         //26 - Buscar documentos nos quais o saldo da BitCoin igual a 0
+        case '26': queryMongo.find(
+            { "conta_acepay.saldo_BTC": 0 }
+        ).toArray(callback);
+            break;
         //27 - Buscar documentos nos quais o saldo de BitCoin igual a 0,005
+        case '27': queryMongo.find(
+            { "conta_acepay.saldo_BTC": 0.005 }
+        ).toArray(callback);
+            break;
         //28 - Buscar documentos nos quais o saldo de BitCoin é igual a 0,002
+        case '28': queryMongo.find(
+            { "conta_acepay.saldo_BTC": 0.002 }
+        ).toArray(callback);
+            break;
         //29 - Buscar documentos nos quais o saldo de BitCoin está entre 0 e 1
-        //30 - Buscar documentos agrupados por Cidade do endereço e saldo de BitCoin
-        //31 - Buscar documentos nos quais o saldo de BitCoin da conta a acePay é maior ou igual a 1
-        //32 - Buscar a soma dos saldos das das contas cujos endereços sao de Recife
-        //33 - Buscar a soma dos saldos das das contas cujos endereços sao do Estado de Pernambuco
+        case '29': queryMongo.find(
+            { "conta_acepay.saldo_BTC": { $gte: 0, $lt: 1 } }).toArray(callback);
+            break;
+        //30 - Buscar documentos nos quais o saldo de BitCoin da conta a acePay é maior ou igual a 1
+        case '30': queryMongo.find(
+            { "conta_acepay.saldo_BTC": { $gte: 1 } }).toArray(callback);
+            break;
+        //31 - Buscar a soma dos saldos das das contas cujos endereços sao do Estado de Pernambuco
+        case '31': queryMongo.aggregate([{
+            $match:
+                {
+                    "endereco.estado": { $in: [/pe/i] },
+                }
+        },
+        {
+            $group:
+                {
+                    _id: null,
+                    soma: { $sum: "$conta_acepay.saldo_BTC" }
+                }
+        }]).toArray(callback);
+            break;
         default: console.log("default");
     }
 }
